@@ -69,19 +69,17 @@ namespace Tyuiu.RadochinaAP.Sprint2.Task5.V13
                             next_g++;
                         }
                     }
-
-                    res = $"{next_g}-{next_m}-{next_n}";
+                    res = $"{next_n:D2}.{next_m:D2}.{next_g}";
                 }
             }
-
             Console.WriteLine("**********************************************************************************************************");
             Console.WriteLine("* РЕЗУЛЬТАТ:                                                                                             *");
             Console.WriteLine("**********************************************************************************************************");
 
+
             Console.WriteLine($"Дата следующего дня: {res}");
             Console.ReadKey();
-
-            
         }
     }
+
 }
