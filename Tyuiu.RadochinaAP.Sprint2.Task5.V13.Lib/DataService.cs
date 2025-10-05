@@ -6,19 +6,41 @@ namespace Tyuiu.RadochinaAP.Sprint2.Task5.V13.Lib
     {
         public string FindDateOfNextDay(int g, int m, int n)
         {
-            if (m < 1 || m > 12 || n < 1)
-                throw new ArgumentException("Некорректная дата!");
+            if (m < 1 || m > 12)
+            {
+                return "Введено неверное значение";
+            }
 
-            int daysInMonth = GetDaysInMonth(m);
+            if (n < 1)
+            {
+                return "Введено неверное значение";
+            }
+
+            // Определяем количество дней в месяце для ВИСОКОСНОГО года
+            int daysInMonth;
+            switch (m)
+            {
+                case 2: daysInMonth = 29; break; // Февраль в високосном году
+                case 4: case 6: case 9: case 11: daysInMonth = 30; break;
+                default: daysInMonth = 31; break;
+            }
+
+            // Проверка, что число не превышает количество дней в месяце
             if (n > daysInMonth)
-                throw new ArgumentException("Некорректная дата!");
+            {
+                return "Введено неверное значение";
+            }
 
-            int next_g = g, next_m = m, next_n = n + 1;
+            // Вычисляем следующую дату
+            int next_g = g;
+            int next_m = m;
+            int next_n = n + 1;
 
             if (next_n > daysInMonth)
             {
                 next_n = 1;
                 next_m++;
+
                 if (next_m > 12)
                 {
                     next_m = 1;
@@ -26,18 +48,8 @@ namespace Tyuiu.RadochinaAP.Sprint2.Task5.V13.Lib
                 }
             }
 
-            return $"{next_g}-{next_m}-{next_n}";
-        }
-
-        private int GetDaysInMonth(int month)
-        {
-            switch (month)
-            {
-                case 2: return 29;
-                case 4: case 6: case 9: case 11: return 30;
-                default: return 31;
-            }
+            // Форматируем с ведущими нулями: "09.09.2024"
+            return $"{next_n:D2}.{next_m:D2}.{next_g}";
         }
     }
 }
-          
