@@ -51,7 +51,7 @@ namespace Tyuiu.RadochinaAP.Sprint2.Task5.V13
                 if (n > daysInMonth)
                 {
                     res = "Введено неверное значение";
-                }
+                } 
                 else
                 {
                     int next_g = g;
